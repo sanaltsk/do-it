@@ -58,9 +58,11 @@ public class TaskAdapter extends BaseAdapter {
         holder.dueDate = (TextView) rowView.findViewById(R.id.dueDate);
 
         holder.taskTitle.setText(task.getTaskName());
-        DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
-        String date_string = dateFormat.format(task.getDueDate());
-        holder.dueDate.setText(date_string);
+        if(task.getDueDate()!=null) {
+            DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
+            String date_string = dateFormat.format(task.getDueDate());
+            holder.dueDate.setText(date_string);
+        }
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
