@@ -7,19 +7,19 @@
     tools:context="com.inspyreit.kui.doit.MainActivity">
 
     <ListView
-        android:layout_width="363dp"
+        android:id="@+id/listView"
+        android:layout_width="368dp"
         android:layout_height="457dp"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
-        android:id="@+id/listView"></ListView>
+        tools:layout_editor_absoluteY="8dp"></ListView>
 
     <Button
         android:id="@+id/addTaskBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
         android:text="Add"
         app:layout_constraintTop_toBottomOf="@+id/listView"
         android:layout_marginLeft="139dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="139dp" />
 </android.support.constraint.ConstraintLayout>
