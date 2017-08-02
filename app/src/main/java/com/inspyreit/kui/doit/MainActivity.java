@@ -1,11 +1,11 @@
 package com.inspyreit.kui.doit;
 
 import android.app.FragmentManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new TaskAdapter(this, to_do_items);
         list.setAdapter(adapter);
 
-        Button addTaskBtn = (Button) findViewById(R.id.addTaskBtn);
+        FloatingActionButton addTaskBtn = (FloatingActionButton) findViewById(R.id.addTaskBtn);
         addTaskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
