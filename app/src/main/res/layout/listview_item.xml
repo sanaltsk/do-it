@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="80dp"
     swipe:clickToClose="true">
-    <!--swipe:leftEdgeSwipeOffset="0dp"-->
-    <!--swipe:rightEdgeSwipeOffset="0dp">-->
 
     <LinearLayout
         android:id="@+id/bottom_wrapper"
@@ -16,25 +14,23 @@
         android:tag="Bottom1"
         android:weightSum="1">
 
-        <TextView
-            android:id="@+id/archive"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/complete"
+            android:layout_width="79dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="@drawable/red"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="Archive"
-            android:textColor="#fff" />
+            android:background="#4cd964"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:src="@drawable/mark_complete" />
 
-        <TextView
-            android:id="@+id/delete"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/edit"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:background="#C7C7CC"
-            android:gravity="center"
-            android:text="Delete" />
+            android:background="@drawable/red"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:src="@drawable/edit_button" />
     </LinearLayout>
 
     <LinearLayout
@@ -44,7 +40,7 @@
         android:tag="Bottom4">
 
         <ImageView
-            android:id="@+id/star2"
+            android:id="@+id/star"
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:background="#4cd964"
@@ -53,7 +49,7 @@
             android:src="@drawable/star" />
 
         <ImageView
-            android:id="@+id/trash2"
+            android:id="@+id/trash"
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:background="@drawable/red"
@@ -67,17 +63,6 @@
         android:layout_height="match_parent"
         android:background="@drawable/item_selector">
 
-        <!--<TextView-->
-        <!--android:id="@+id/position"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/text_data"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:tag="Hover"-->
-        <!--android:text="Do not, for one repulse, forgo the purpose that you resolved to effort. " />-->
         <TextView
             android:id="@+id/taskTitle"
             android:layout_width="wrap_content"

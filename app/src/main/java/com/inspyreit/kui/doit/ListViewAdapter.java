@@ -5,9 +5,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.swipe.SimpleSwipeListener;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.BaseSwipeAdapter;
 
@@ -32,13 +34,20 @@ public class ListViewAdapter extends BaseSwipeAdapter {
     }
 
     @Override
-    public View generateView(int position, ViewGroup parent) {
+    public View generateView(final int position, ViewGroup parent) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.listview_item, null);
-        SwipeLayout swipeLayout = (SwipeLayout)v.findViewById(getSwipeLayoutResourceId(position));
+        final SwipeLayout swipeLayout = (SwipeLayout)v.findViewById(getSwipeLayoutResourceId(position));
         swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
         swipeLayout.addDrag(SwipeLayout.DragEdge.Left, swipeLayout.findViewById(R.id.bottom_wrapper));
         swipeLayout.addDrag(SwipeLayout.DragEdge.Right, swipeLayout.findViewById(R.id.bottom_wrapper_2));
 
+        swipeLayout.addSwipeListener(new SimpleSwipeListener() {
+            @Override
+            public void onOpen(SwipeLayout layout) {
+//                YoYo.with(Techniques.Tada).duration(500).delay(100).playOn(layout.findViewById(R.id.trash));
+            }
+
+        });
         swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,30 +63,40 @@ public class ListViewAdapter extends BaseSwipeAdapter {
                 return true;
             }
         });
-        swipeLayout.findViewById(R.id.star2).setOnClickListener(new View.OnClickListener() {
+        swipeLayout.findViewById(R.id.star).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Star", Toast.LENGTH_SHORT).show();
+                ImageView img = (ImageView) v.findViewById(R.id.star);
+                img.setImageResource(R.drawable.complete_star);
+                Toast.makeText(mContext, "Staring", Toast.LENGTH_SHORT).show();
+                swipeLayout.close();
             }
+
         });
 
-        swipeLayout.findViewById(R.id.trash2).setOnClickListener(new View.OnClickListener() {
+        swipeLayout.findViewById(R.id.trash).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "Trash Bin", Toast.LENGTH_SHORT).show();
+                tasks.remove(position);
+                ListViewAdapter.super.notifyDataSetChanged();
+                swipeLayout.close();
             }
         });
-        swipeLayout.findViewById(R.id.archive).setOnClickListener(new View.OnClickListener() {
+        swipeLayout.findViewById(R.id.complete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Archivinggg", Toast.LENGTH_SHORT).show();
+                ImageView img = (ImageView) v.findViewById(R.id.complete);
+                img.setImageResource(R.drawable.task_completed);
+                Toast.makeText(mContext, "Task Completed", Toast.LENGTH_SHORT).show();
+                swipeLayout.close();
             }
         });
 
-        swipeLayout.findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
+        swipeLayout.findViewById(R.id.edit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Delete Bin", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Edit Window", Toast.LENGTH_SHORT).show();
             }
         });
         return v;
@@ -139,4 +158,6 @@ public class ListViewAdapter extends BaseSwipeAdapter {
                 (int) ((startG + (int) (fraction * (endG - startG))) << 8) |
                 (int) ((startB + (int) (fraction * (endB - startB))));
     }
+
+
 }
