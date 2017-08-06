@@ -1,8 +1,8 @@
 package com.inspyreit.kui.doit;
 
 import android.app.DatePickerDialog;
-import android.os.Bundle;
 import android.app.DialogFragment;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,37 +21,50 @@ import java.util.Date;
  * Created by sanal on 8/1/17.
  */
 
-public class AddTaskDialogFragment extends DialogFragment {
+public class EditTaskDialogFragment extends DialogFragment {
     String date_string;
+    String task;
     Date date;
+    int position;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_add_task_dialog, container, false);
+        date_string = getArguments().getString("date");
+        task = getArguments().getString("title");
+        position = getArguments().getInt("position");
+
+
+        final View rootView = inflater.inflate(R.layout.fragment_edit_task_dialog, container, false);
         getDialog().setTitle("Add Task");
-        Button dismiss = (Button) rootView.findViewById(R.id.add_task_dismiss_btn);
+        Button dismiss = (Button) rootView.findViewById(R.id.edit_task_dismiss_btn);
         dismiss.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
             }
         });
+        TextView taskTV = (TextView)rootView.findViewById(R.id.edit_task_title);
+        taskTV.setText(task);
+        if(date_string!=null && !date_string.isEmpty()) {
+            TextView dateTV = (TextView)rootView.findViewById(R.id.edit_task_date_holder);
+            dateTV.setText(date_string);
+        }
 
-        Button save =(Button) rootView.findViewById(R.id.add_task_save_btn);
+        Button save =(Button) rootView.findViewById(R.id.edit_task_save_btn);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText taskNameET = (EditText) rootView.findViewById(R.id.add_task_title);
+                EditText taskNameET = (EditText) rootView.findViewById(R.id.edit_task_title);
                 String taskName = taskNameET.getText().toString();
                 MainActivity callingActivity = (MainActivity) getActivity();
                 ToDoItem task = new ToDoItem();
                 task.setTaskName(taskName);
                 task.setDueDate(date);
-                callingActivity.addNewTask(task);
+                callingActivity.editTask(task,position);
                 dismiss();
             }
         });
 
-        ImageButton cal = (ImageButton) rootView.findViewById(R.id.add_task_cal_btn);
+        ImageButton cal = (ImageButton) rootView.findViewById(R.id.edit_task_cal_btn);
         cal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +83,7 @@ public class AddTaskDialogFragment extends DialogFragment {
                         DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(view.getContext());
                         Log.i("Setting task date ",dateFormat.format(cal.getTime()));
 
-                        TextView dateText = (TextView)rootView.findViewById(R.id.add_task_date_holder);
+                        TextView dateText = (TextView)rootView.findViewById(R.id.edit_task_date_holder);
                         date_string = dateFormat.format(cal.getTime());
                         date = cal.getTime();
                         dateText.setText(date_string);

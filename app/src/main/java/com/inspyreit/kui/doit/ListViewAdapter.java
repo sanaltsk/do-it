@@ -1,6 +1,9 @@
 package com.inspyreit.kui.doit;
 
+import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,6 +100,19 @@ public class ListViewAdapter extends BaseSwipeAdapter {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "Edit Window", Toast.LENGTH_SHORT).show();
+                FragmentManager fm = ((Activity)mContext).getFragmentManager();
+                EditTaskDialogFragment dialogFragment = new EditTaskDialogFragment ();
+                Bundle args = new Bundle();
+                args.putInt("position", position);
+                ToDoItem task = getItem(position);
+                args.putString("title", task.getTaskName());
+                if(task.getDueDate()!=null) {
+                    DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(mContext);
+                    args.putString("date", dateFormat.format(task.getDueDate()));
+                }
+                dialogFragment.setArguments(args);
+                dialogFragment.show(fm,"Edit Task");
+                swipeLayout.close();
             }
         });
         return v;
@@ -128,7 +144,7 @@ public class ListViewAdapter extends BaseSwipeAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public ToDoItem getItem(int position) {
         return tasks.get(position);
     }
 

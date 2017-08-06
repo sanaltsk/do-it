@@ -47,4 +47,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d("New Task: ", task.toString());
 
     }
+
+    public void editTask(ToDoItem task, int position) {
+        to_do_items.set(position,task);
+        mAdapter.notifyDataSetChanged();
+        Log.d("Edit Task: ", task.toString());
+
+    }
 }
