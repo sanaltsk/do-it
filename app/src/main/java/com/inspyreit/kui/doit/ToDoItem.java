@@ -12,27 +12,13 @@ import java.util.Date;
 
 public class ToDoItem {
     String taskName;
-
     Date dueDate;
+    boolean stared = false;
+    boolean complete = false;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ToDoItem toDoItem = (ToDoItem) o;
-
-        if (taskName != null ? !taskName.equals(toDoItem.taskName) : toDoItem.taskName != null)
-            return false;
-        return dueDate != null ? dueDate.equals(toDoItem.dueDate) : toDoItem.dueDate == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = taskName != null ? taskName.hashCode() : 0;
-        result = 31 * result + (dueDate != null ? dueDate.hashCode() : 0);
-        return result;
+    public ToDoItem(String taskName, Date dueDate) {
+        this.taskName = taskName;
+        this.dueDate = dueDate;
     }
 
     public String getTaskName() {
@@ -48,8 +34,47 @@ public class ToDoItem {
     }
 
     public void setDueDate(Date dueDate) {
-        DateFormat dateFormat = new SimpleDateFormat();
         this.dueDate = dueDate;
+    }
+
+    public boolean isStared() {
+        return stared;
+    }
+
+    public void setStared(boolean stared) {
+        this.stared = stared;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ToDoItem toDoItem = (ToDoItem) o;
+
+        if (stared != toDoItem.stared) return false;
+        if (complete != toDoItem.complete) return false;
+        if (taskName != null ? !taskName.equals(toDoItem.taskName) : toDoItem.taskName != null)
+            return false;
+        return dueDate != null ? dueDate.equals(toDoItem.dueDate) : toDoItem.dueDate == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = taskName != null ? taskName.hashCode() : 0;
+        result = 31 * result + (dueDate != null ? dueDate.hashCode() : 0);
+        result = 31 * result + (stared ? 1 : 0);
+        result = 31 * result + (complete ? 1 : 0);
+        return result;
     }
 
     @Override
@@ -57,6 +82,8 @@ public class ToDoItem {
         return "ToDoItem{" +
                 "taskName='" + taskName + '\'' +
                 ", dueDate=" + dueDate +
+                ", stared=" + stared +
+                ", complete=" + complete +
                 '}';
     }
 }

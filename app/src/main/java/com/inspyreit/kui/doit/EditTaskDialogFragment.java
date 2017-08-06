@@ -56,9 +56,7 @@ public class EditTaskDialogFragment extends DialogFragment {
                 EditText taskNameET = (EditText) rootView.findViewById(R.id.edit_task_title);
                 String taskName = taskNameET.getText().toString();
                 MainActivity callingActivity = (MainActivity) getActivity();
-                ToDoItem task = new ToDoItem();
-                task.setTaskName(taskName);
-                task.setDueDate(date);
+                ToDoItem task = new ToDoItem(taskName, date);
                 callingActivity.editTask(task,position);
                 dismiss();
             }

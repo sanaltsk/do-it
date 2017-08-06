@@ -43,9 +43,7 @@ public class AddTaskDialogFragment extends DialogFragment {
                 EditText taskNameET = (EditText) rootView.findViewById(R.id.add_task_title);
                 String taskName = taskNameET.getText().toString();
                 MainActivity callingActivity = (MainActivity) getActivity();
-                ToDoItem task = new ToDoItem();
-                task.setTaskName(taskName);
-                task.setDueDate(date);
+                ToDoItem task = new ToDoItem(taskName, date);
                 callingActivity.addNewTask(task);
                 dismiss();
             }

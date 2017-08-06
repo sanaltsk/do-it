@@ -3,6 +3,7 @@ package com.inspyreit.kui.doit;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -89,9 +90,19 @@ public class ListViewAdapter extends BaseSwipeAdapter {
         swipeLayout.findViewById(R.id.complete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageView img = (ImageView) v.findViewById(R.id.complete);
-                img.setImageResource(R.drawable.task_completed);
                 Toast.makeText(mContext, "Task Completed", Toast.LENGTH_SHORT).show();
+                ToDoItem task = tasks.get(position);
+                task.setComplete(!task.isComplete());
+                if(task.isComplete()) {
+                    ImageView img = (ImageView) v.findViewById(R.id.complete);
+                    img.setImageResource(R.drawable.task_completed);
+                } else
+                {
+                    ImageView img = (ImageView) v.findViewById(R.id.complete);
+                    img.setImageResource(R.drawable.mark_complete);
+                }
+                MainActivity activity = ((MainActivity)v.getContext() ) ;
+                activity.editTask(task,position);
                 swipeLayout.close();
             }
         });
@@ -130,6 +141,11 @@ public class ListViewAdapter extends BaseSwipeAdapter {
         holder.dueDate = (TextView) convertView.findViewById(R.id.dueDate);
 
         holder.taskTitle.setText(task.getTaskName());
+        if(task.isComplete()) {
+            holder.taskTitle.setPaintFlags(holder.taskTitle.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            holder.taskTitle.setPaintFlags(0);
+        }
         if(task.getDueDate()!=null) {
             DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(mContext);
             String date_string = dateFormat.format(task.getDueDate());
