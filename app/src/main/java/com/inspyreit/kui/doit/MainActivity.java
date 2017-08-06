@@ -29,9 +29,6 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new ListViewAdapter(this,to_do_items);
         mListView.setAdapter(mAdapter);
         mAdapter.setMode(Attributes.Mode.Single);
-//        ListView list = (ListView) findViewById(R.id.listView);
-//        adapter = new TaskAdapter(this, to_do_items);
-//        list.setAdapter(adapter);
 
         FloatingActionButton addTaskBtn = (FloatingActionButton) findViewById(R.id.addTaskBtn);
         addTaskBtn.setOnClickListener(new View.OnClickListener() {
