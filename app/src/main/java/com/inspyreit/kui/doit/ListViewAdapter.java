@@ -71,17 +71,18 @@ public class ListViewAdapter extends BaseSwipeAdapter {
             @Override
             public void onClick(View v) {
                 ImageView img = (ImageView) v.findViewById(R.id.star);
-                Toast.makeText(mContext, "Staring", Toast.LENGTH_SHORT).show();
                 ToDoItem task = tasks.get(position);
                 task.setStared(!task.isStared());
                 if(task.isStared()) {
+                    Toast.makeText(mContext, "Task Stared!", Toast.LENGTH_SHORT).show();
                     img.setImageResource(R.drawable.complete_star);
                 } else
                 {
+                    Toast.makeText(mContext, "Task Unstared!", Toast.LENGTH_SHORT).show();
                     img.setImageResource(R.drawable.star);
                 }
-                MainActivity activity = ((MainActivity)v.getContext() ) ;
-                activity.editTask(task,position);
+                tasks.set(position,task);
+                ListViewAdapter.super.notifyDataSetChanged();
                 swipeLayout.close();
             }
 
@@ -90,7 +91,7 @@ public class ListViewAdapter extends BaseSwipeAdapter {
         swipeLayout.findViewById(R.id.trash).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Trash Bin", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Deleting Task", Toast.LENGTH_SHORT).show();
                 tasks.remove(position);
                 ListViewAdapter.super.notifyDataSetChanged();
                 swipeLayout.close();
@@ -99,18 +100,19 @@ public class ListViewAdapter extends BaseSwipeAdapter {
         swipeLayout.findViewById(R.id.complete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Task Completed", Toast.LENGTH_SHORT).show();
                 ImageView img = (ImageView) v.findViewById(R.id.complete);
                 ToDoItem task = tasks.get(position);
                 task.setComplete(!task.isComplete());
                 if(task.isComplete()) {
+                    Toast.makeText(mContext, "Task Completed!", Toast.LENGTH_SHORT).show();
                     img.setImageResource(R.drawable.task_completed);
                 } else
                 {
+                    Toast.makeText(mContext, "Task Status Changed!", Toast.LENGTH_SHORT).show();
                     img.setImageResource(R.drawable.mark_complete);
                 }
-                MainActivity activity = ((MainActivity)v.getContext() ) ;
-                activity.editTask(task,position);
+                tasks.set(position,task);
+                ListViewAdapter.super.notifyDataSetChanged();
                 swipeLayout.close();
             }
         });

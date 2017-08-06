@@ -58,42 +58,52 @@
             android:src="@drawable/trash" />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:background="@drawable/item_selector">
 
         <TextView
             android:id="@+id/taskTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/taskStar"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
             android:textSize="25dp" />
 
-        <TextView
-            android:id="@+id/dueDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingBottom="15dp"
-            android:paddingLeft="20dp"
-            android:paddingTop="15dp"
-            android:textSize="25dp" />
 
         <ImageView
             android:id="@+id/taskStar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_gravity="center"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
             android:paddingBottom="15dp"
-            android:paddingLeft="300dp"
+            android:paddingLeft="80dp"
             android:paddingTop="15dp"
             android:textSize="25dp"
             android:visibility="invisible"
             swipe:srcCompat="@drawable/black_star" />
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/dueDate"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/taskTitle"
+            android:layout_alignStart="@+id/taskTitle"
+            android:layout_below="@+id/taskTitle"
+            android:layout_marginTop="10dp"
+            android:textSize="15dp" />
+
+
+    </RelativeLayout>
 
 </com.daimajia.swipe.SwipeLayout>
 
