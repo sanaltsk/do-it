@@ -71,8 +71,17 @@ public class ListViewAdapter extends BaseSwipeAdapter {
             @Override
             public void onClick(View v) {
                 ImageView img = (ImageView) v.findViewById(R.id.star);
-                img.setImageResource(R.drawable.complete_star);
                 Toast.makeText(mContext, "Staring", Toast.LENGTH_SHORT).show();
+                ToDoItem task = tasks.get(position);
+                task.setStared(!task.isStared());
+                if(task.isStared()) {
+                    img.setImageResource(R.drawable.complete_star);
+                } else
+                {
+                    img.setImageResource(R.drawable.star);
+                }
+                MainActivity activity = ((MainActivity)v.getContext() ) ;
+                activity.editTask(task,position);
                 swipeLayout.close();
             }
 
@@ -91,14 +100,13 @@ public class ListViewAdapter extends BaseSwipeAdapter {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "Task Completed", Toast.LENGTH_SHORT).show();
+                ImageView img = (ImageView) v.findViewById(R.id.complete);
                 ToDoItem task = tasks.get(position);
                 task.setComplete(!task.isComplete());
                 if(task.isComplete()) {
-                    ImageView img = (ImageView) v.findViewById(R.id.complete);
                     img.setImageResource(R.drawable.task_completed);
                 } else
                 {
-                    ImageView img = (ImageView) v.findViewById(R.id.complete);
                     img.setImageResource(R.drawable.mark_complete);
                 }
                 MainActivity activity = ((MainActivity)v.getContext() ) ;
@@ -132,6 +140,7 @@ public class ListViewAdapter extends BaseSwipeAdapter {
     public class Holder {
         TextView taskTitle;
         TextView dueDate;
+        ImageView star;
     }
     @Override
     public void fillValues(int position, View convertView) {
@@ -139,12 +148,18 @@ public class ListViewAdapter extends BaseSwipeAdapter {
         Holder holder=new Holder();
         holder.taskTitle=(TextView) convertView.findViewById(R.id.taskTitle);
         holder.dueDate = (TextView) convertView.findViewById(R.id.dueDate);
+        holder.star = (ImageView) convertView.findViewById(R.id.taskStar);
 
         holder.taskTitle.setText(task.getTaskName());
         if(task.isComplete()) {
             holder.taskTitle.setPaintFlags(holder.taskTitle.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
         } else {
             holder.taskTitle.setPaintFlags(0);
+        }
+        if(task.isStared()) {
+            holder.star.setVisibility(View.VISIBLE);
+        } else {
+            holder.star.setVisibility(View.INVISIBLE);
         }
         if(task.getDueDate()!=null) {
             DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(mContext);

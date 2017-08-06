@@ -25,16 +25,7 @@
         android:paddingTop="15dp"
         android:textSize="25dp" />
 
-    <!--<ImageView-->
-        <!--android:id="@+id/taskStar"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:paddingBottom="15dp"-->
-        <!--android:paddingLeft="20dp"-->
-        <!--android:paddingTop="15dp"-->
-        <!--android:textSize="25dp"-->
-        <!--app:srcCompat="@drawable/black_star" />-->
+
 
 
 </LinearLayout>
