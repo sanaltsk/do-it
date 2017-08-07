@@ -1,4 +1,4 @@
-package com.inspyreit.kui.doit;
+package com.inspyreit.kui.doit.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,12 +6,10 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.inspyreit.kui.doit.ToDoItem;
+
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import static android.R.attr.name;
-import static android.R.id.list;
 
 /**
  * Created by sanal on 8/6/17.

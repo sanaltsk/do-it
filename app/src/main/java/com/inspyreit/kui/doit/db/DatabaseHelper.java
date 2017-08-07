@@ -1,4 +1,4 @@
-package com.inspyreit.kui.doit;
+package com.inspyreit.kui.doit.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

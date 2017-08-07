@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.daimajia.swipe.util.Attributes;
+import com.inspyreit.kui.doit.adapter.ListViewAdapter;
+import com.inspyreit.kui.doit.db.DBManager;
+import com.inspyreit.kui.doit.dialogfragment.AddTaskDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static List<ToDoItem> to_do_items = new ArrayList<>();
+    List<ToDoItem> to_do_items = new ArrayList<>();
 
     private ListView mListView;
     private ListViewAdapter mAdapter;
