@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-
     public void addNewTask(ToDoItem task) {
         to_do_items.add(task);
         dbManager.insert(task);
