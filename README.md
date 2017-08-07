@@ -4,7 +4,7 @@
 
 Submitted by: **Sanal Kumar Thekkanath**
 
-Time spent: **X** hours spent in total
+Time spent: **~15** hours spent in total
 
 ## User Stories
 
