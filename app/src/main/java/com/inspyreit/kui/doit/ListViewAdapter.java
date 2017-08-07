@@ -18,6 +18,7 @@ import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.BaseSwipeAdapter;
 
 import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -46,26 +47,16 @@ public class ListViewAdapter extends BaseSwipeAdapter {
         swipeLayout.addDrag(SwipeLayout.DragEdge.Left, swipeLayout.findViewById(R.id.bottom_wrapper));
         swipeLayout.addDrag(SwipeLayout.DragEdge.Right, swipeLayout.findViewById(R.id.bottom_wrapper_2));
 
-        swipeLayout.addSwipeListener(new SimpleSwipeListener() {
-            @Override
-            public void onOpen(SwipeLayout layout) {
-//                YoYo.with(Techniques.Tada).duration(500).delay(100).playOn(layout.findViewById(R.id.trash));
-            }
-
-        });
         swipeLayout.getSurfaceView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Click on surface", Toast.LENGTH_SHORT).show();
-                Log.d("app", "click on surface");
-            }
-        });
-        swipeLayout.getSurfaceView().setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Toast.makeText(mContext, "longClick on surface", Toast.LENGTH_SHORT).show();
-                Log.d("app", "longClick on surface");
-                return true;
+                ToDoItem task = getItem(position);
+                if(task.getDueDate()!=null) {
+                    Date dt = new Date();
+                    int diffInDays = (int)( (task.getDueDate().getTime() - dt.getTime())
+                            / (1000 * 60 * 60 * 24) +1 );
+                    Toast.makeText(mContext, diffInDays + " days remaining to duedate", Toast.LENGTH_LONG).show();
+                }
             }
         });
         swipeLayout.findViewById(R.id.star).setOnClickListener(new View.OnClickListener() {
