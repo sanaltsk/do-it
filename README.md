@@ -41,18 +41,18 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 As part of your pre-work submission, please reflect on the app and answer the following questions below:
 
 **Question 1:** "What are your reactions to the Android app development platform so far? Compare and contrast Android's approach to layouts and user interfaces in past platforms you've used."
-
+**Answer:**
 Android has a unique way of tying the UI and Logic together via the layouts and java files, with all the resource attributes accessible to both. Its pretty interesting as compared to the ios way of doing it where i found it a bit restrictive and had to use a lot of drag and drops to connect different things.
 
 Android had kept the layouts, styles, colors pretty distinctive that helps in code being clean and understandable yet really easy to connect things together. It also provides different setoff predefined layouts which could easy the developer effort, yet could hack through to create custom layout for expert users.
 
 This project was really a learning oppurtunity for me exposing lot of features that I wasnt really aware before.
 
-**Answer:** [Enter your answer here in a paragraph or two].
 
 **Question 2:** "Take a moment to reflect on the `ArrayAdapter` used in your pre-work. How would you describe an adapter in this context and what is its function in Android? Why do you think the adapter is important? Explain the purpose of the `convertView` in the `getView` method of the `ArrayAdapter`."
 
-**Answer:** [Enter your answer here in a paragraph or two].
+**Answer:**
+
 ArrayAdapter is used when we have display a set of structured data in a listview or spinner etc. We could also customize the adapter to do lot more than structuring the data. Here i have used a BaseSwipeAdapter which gets android swipe capabilites as in Apple Mail app. I felt that has an incredible user experience and hence used it in my app. How arrayadapter works is it takes one element of array and applies it to a single unit of layout and does that repeatedly till the length of the array. This helps the developer from looping through the array and setting values which could be inefficient when done the wrong way.
 
 ConvertView is a listview cache, it works by reusing the same listview memory for all the listview operations like insert, delete or edit. And hence its memory efficient and improves the performance of the adapter.
@@ -60,6 +60,7 @@ ConvertView is a listview cache, it works by reusing the same listview memory fo
 ## Notes
 
 Describe any challenges encountered while building the app.
+**Answer:**
 challenges I encoutered using the app was to trying to use BaseSwipeAdapter in the adapter, it had a bit of learning curve. Intially the UI experience while swiping was bad, took a bit of attempts to get that right.  Incorporating SQLLite with the BaseSwipeAdapter also was a bit of an issue.
   
 
