@@ -20,6 +20,7 @@ import com.daimajia.swipe.adapters.BaseSwipeAdapter;
 import java.text.DateFormat;
 import java.util.List;
 
+
 public class ListViewAdapter extends BaseSwipeAdapter {
     List<ToDoItem>  tasks;
 
@@ -70,6 +71,7 @@ public class ListViewAdapter extends BaseSwipeAdapter {
         swipeLayout.findViewById(R.id.star).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DBManager dbManager = new DBManager(mContext);
                 ImageView img = (ImageView) v.findViewById(R.id.star);
                 ToDoItem task = tasks.get(position);
                 task.setStared(!task.isStared());
@@ -82,6 +84,7 @@ public class ListViewAdapter extends BaseSwipeAdapter {
                     img.setImageResource(R.drawable.star);
                 }
                 tasks.set(position,task);
+                dbManager.update(task.taskName,task);
                 ListViewAdapter.super.notifyDataSetChanged();
                 swipeLayout.close();
             }
@@ -91,15 +94,20 @@ public class ListViewAdapter extends BaseSwipeAdapter {
         swipeLayout.findViewById(R.id.trash).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DBManager dbManager = new DBManager(mContext);
                 Toast.makeText(mContext, "Deleting Task", Toast.LENGTH_SHORT).show();
-                tasks.remove(position);
+                ToDoItem task = getItem(position);
+                dbManager.delete(task.getTaskName());
+                MainActivity.to_do_items = dbManager.getAllTasks();
                 ListViewAdapter.super.notifyDataSetChanged();
+                tasks.remove(position);
                 swipeLayout.close();
             }
         });
         swipeLayout.findViewById(R.id.complete).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DBManager dbManager = new DBManager(mContext);
                 ImageView img = (ImageView) v.findViewById(R.id.complete);
                 ToDoItem task = tasks.get(position);
                 task.setComplete(!task.isComplete());
@@ -112,6 +120,8 @@ public class ListViewAdapter extends BaseSwipeAdapter {
                     img.setImageResource(R.drawable.mark_complete);
                 }
                 tasks.set(position,task);
+                ListViewAdapter.super.notifyDataSetChanged();
+                dbManager.update(task.taskName,task);
                 ListViewAdapter.super.notifyDataSetChanged();
                 swipeLayout.close();
             }

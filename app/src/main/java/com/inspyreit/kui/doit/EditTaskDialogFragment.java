@@ -23,13 +23,13 @@ import java.util.Date;
 
 public class EditTaskDialogFragment extends DialogFragment {
     String date_string;
-    String task;
+    String task_string;
     Date date;
     int position;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         date_string = getArguments().getString("date");
-        task = getArguments().getString("title");
+        task_string = getArguments().getString("title");
         position = getArguments().getInt("position");
 
 
@@ -43,7 +43,7 @@ public class EditTaskDialogFragment extends DialogFragment {
             }
         });
         TextView taskTV = (TextView)rootView.findViewById(R.id.edit_task_title);
-        taskTV.setText(task);
+        taskTV.setText(task_string);
         if(date_string!=null && !date_string.isEmpty()) {
             TextView dateTV = (TextView)rootView.findViewById(R.id.edit_task_date_holder);
             dateTV.setText(date_string);
@@ -56,8 +56,9 @@ public class EditTaskDialogFragment extends DialogFragment {
                 EditText taskNameET = (EditText) rootView.findViewById(R.id.edit_task_title);
                 String taskName = taskNameET.getText().toString();
                 MainActivity callingActivity = (MainActivity) getActivity();
-                ToDoItem task = new ToDoItem(taskName, date);
-                callingActivity.editTask(task,position);
+                ToDoItem task = new ToDoItem(taskName);
+                task.setDueDate(date);
+                callingActivity.editTask(task_string,task,position);
                 dismiss();
             }
         });
@@ -79,7 +80,6 @@ public class EditTaskDialogFragment extends DialogFragment {
                         cal.set(Calendar.MONTH, month);
                         cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                         DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(view.getContext());
-                        Log.i("Setting task date ",dateFormat.format(cal.getTime()));
 
                         TextView dateText = (TextView)rootView.findViewById(R.id.edit_task_date_holder);
                         date_string = dateFormat.format(cal.getTime());

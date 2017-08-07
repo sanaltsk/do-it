@@ -11,14 +11,22 @@ import java.util.Date;
  */
 
 public class ToDoItem {
+    Long _id;
     String taskName;
     Date dueDate;
     boolean stared = false;
     boolean complete = false;
 
-    public ToDoItem(String taskName, Date dueDate) {
+    public ToDoItem(String taskName) {
         this.taskName = taskName;
-        this.dueDate = dueDate;
+    }
+
+    public Long get_id() {
+        return _id;
+    }
+
+    public void set_id(Long _id) {
+        this._id = _id;
     }
 
     public String getTaskName() {

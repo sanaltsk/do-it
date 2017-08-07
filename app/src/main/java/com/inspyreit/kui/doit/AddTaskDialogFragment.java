@@ -43,7 +43,8 @@ public class AddTaskDialogFragment extends DialogFragment {
                 EditText taskNameET = (EditText) rootView.findViewById(R.id.add_task_title);
                 String taskName = taskNameET.getText().toString();
                 MainActivity callingActivity = (MainActivity) getActivity();
-                ToDoItem task = new ToDoItem(taskName, date);
+                ToDoItem task = new ToDoItem(taskName);
+                task.setDueDate(date);
                 callingActivity.addNewTask(task);
                 dismiss();
             }
@@ -66,8 +67,6 @@ public class AddTaskDialogFragment extends DialogFragment {
                         cal.set(Calendar.MONTH, month);
                         cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                         DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(view.getContext());
-                        Log.i("Setting task date ",dateFormat.format(cal.getTime()));
-
                         TextView dateText = (TextView)rootView.findViewById(R.id.add_task_date_holder);
                         date_string = dateFormat.format(cal.getTime());
                         date = cal.getTime();
