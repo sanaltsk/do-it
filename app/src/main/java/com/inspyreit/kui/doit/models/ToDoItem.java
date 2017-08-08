@@ -1,9 +1,5 @@
-package com.inspyreit.kui.doit;
+package com.inspyreit.kui.doit.models;
 
-import android.widget.TextView;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**

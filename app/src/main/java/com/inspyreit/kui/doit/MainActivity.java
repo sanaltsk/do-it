@@ -12,6 +12,7 @@ import com.daimajia.swipe.util.Attributes;
 import com.inspyreit.kui.doit.adapter.ListViewAdapter;
 import com.inspyreit.kui.doit.db.DBManager;
 import com.inspyreit.kui.doit.dialogfragment.AddTaskDialogFragment;
+import com.inspyreit.kui.doit.models.ToDoItem;
 
 import java.util.ArrayList;
 import java.util.List;

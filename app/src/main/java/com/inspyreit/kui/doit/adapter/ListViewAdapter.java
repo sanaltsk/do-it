@@ -15,9 +15,8 @@ import android.widget.Toast;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.BaseSwipeAdapter;
 import com.inspyreit.kui.doit.dialogfragment.EditTaskDialogFragment;
-import com.inspyreit.kui.doit.MainActivity;
 import com.inspyreit.kui.doit.R;
-import com.inspyreit.kui.doit.ToDoItem;
+import com.inspyreit.kui.doit.models.ToDoItem;
 import com.inspyreit.kui.doit.db.DBManager;
 
 import java.text.DateFormat;

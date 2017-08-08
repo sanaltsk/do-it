@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.inspyreit.kui.doit.ToDoItem;
+import com.inspyreit.kui.doit.models.ToDoItem;
 
 import java.util.ArrayList;
 import java.util.Date;

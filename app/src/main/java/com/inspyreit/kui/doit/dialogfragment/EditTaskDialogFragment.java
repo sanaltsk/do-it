@@ -3,7 +3,6 @@ package com.inspyreit.kui.doit.dialogfragment;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import android.widget.TextView;
 
 import com.inspyreit.kui.doit.MainActivity;
 import com.inspyreit.kui.doit.R;
-import com.inspyreit.kui.doit.ToDoItem;
+import com.inspyreit.kui.doit.models.ToDoItem;
 
 import java.text.DateFormat;
 import java.util.Calendar;
